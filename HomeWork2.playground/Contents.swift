@@ -80,6 +80,14 @@ if let userAge = Int(userInputAge) {
     print("Cannot convert userInputAge with the value of '\(userInputAge)' to Int")
 }
 
+//let userAge = Int(userInputAge)
+//
+//if userAge != nil {
+//    print("userInputAge can be converted to Int: \(userAge!)")
+//} else {
+//    print("Cannot convert userInputAge with the value of '\(userInputAge)' to Int")
+//}
+
 /*
  Ex5:
  Calculate the number of years, months, days have passed from you birthday to current date.
