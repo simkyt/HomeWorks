@@ -8,12 +8,14 @@ import UIKit
 
  */
 
-var floatOne: Float = 3.14
-var floatTwo: Float = 42.0
+let floatOne: Float = 3.14
+let floatTwo: Float = 42.0
 
 var sumOfFloats: Double = Double(floatOne) + Double(floatTwo)
 
-print(sumOfFloats)
+let formattedSum = String(format: "%.2f", sumOfFloats)
+
+print(formattedSum)
 
 /*
  Ex2:
@@ -29,8 +31,8 @@ print(sumOfFloats)
  
  */
 
-var numberOne = 5
-var numberTwo: Int = 2
+let numberOne = 5
+let numberTwo: Int = 2
 
 let result = numberOne / numberTwo
 
@@ -99,41 +101,25 @@ let monthOfBirth = 4
 let dayOfBirth = 2
 
 let currentFullDate: Date = Date.now
-let components = Calendar.current.dateComponents([.year, .month, .day], from: currentFullDate)
 
-let currentYear: Int = components.year!
-let currentMonth: Int = components.month!
-let currentDay: Int = components.day!
+let dateFormatter = DateFormatter()
+dateFormatter.dateFormat = "yyyy/MM/dd"
+let birthDate = dateFormatter.date(from: "\(yearOfBirth)/\(monthOfBirth)/\(dayOfBirth)") ?? Date.now
 
-let totalYearsFromBirth: Int = currentYear - yearOfBirth
-let totalMonthFromBirth: Int = (totalYearsFromBirth * 12) + currentMonth - monthOfBirth
-let totalDaysFromBirth: Int = (totalMonthFromBirth * 30) + currentDay - dayOfBirth
+let yearComponents = Calendar.current.dateComponents([.year], from: birthDate, to: currentFullDate)
+let totalYearsFromBirth: Int = yearComponents.year ?? 0
 
-print("Total years: \(totalYearsFromBirth) , total months: \(totalMonthFromBirth), total days: \(totalDaysFromBirth) have passed")
+let monthComponents = Calendar.current.dateComponents([.month], from: birthDate, to: currentFullDate)
+let totalMonthFromBirth: Int = monthComponents.month ?? 0
 
+let dayComponents = Calendar.current.dateComponents([.day], from: birthDate, to: currentFullDate)
+let totalDaysFromBirth: Int = dayComponents.day ?? 0
 
-// more automatic and accurate counting
-
-//let yearOfBirth = 2000
-//let monthOfBirth = 4
-//let dayOfBirth = 2
-//
-//let currentFullDate: Date = Date.now
-//
-//let dateFormatter = DateFormatter()
-//dateFormatter.dateFormat = "yyyy/MM/dd"
-//let birthDate = dateFormatter.date(from: "\(yearOfBirth)/\(monthOfBirth)/\(dayOfBirth)")!
-//
-//let yearComponents = Calendar.current.dateComponents([.year], from: birthDate, to: currentFullDate)
-//let totalYearsFromBirth: Int = yearComponents.year!
-//
-//let monthComponents = Calendar.current.dateComponents([.month], from: birthDate, to: currentFullDate)
-//let totalMonthFromBirth: Int = monthComponents.month!
-//
-//let dayComponents = Calendar.current.dateComponents([.day], from: birthDate, to: currentFullDate)
-//let totalDaysFromBirth: Int = dayComponents.day!
-//
-//print("Total years: \(totalYearsFromBirth) , total months: \(totalMonthFromBirth), total days: \(totalDaysFromBirth) have passed")
+if totalYearsFromBirth != 0 || totalMonthFromBirth != 0 || totalDaysFromBirth != 0 {
+    print("Total years: \(totalYearsFromBirth) , total months: \(totalMonthFromBirth), total days: \(totalDaysFromBirth) have passed")
+} else {
+    print("Wrong input, or something went horribly wrong!")
+}
 
 
 /*
