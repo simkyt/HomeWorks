@@ -46,21 +46,20 @@ print("My even numbers are: \(evenNumbers)")
  Inside the for loop create randomNumber for the random Int calculation. Calculate and print("Number 5 will be after \(counter) shuffles"). Don't forget to make a break inside the if statement.
  */
 
-var counter: Int = 0
 let maxIterations = 1_000_000
+var numberFound = false
 
-for _ in 1...maxIterations {
+for counter in 1...maxIterations {
     let randomNumber = Int.random(in: 1...10000)
-    
-    counter += 1
     
     if randomNumber == 5 {
         print("Number 5 will be after \(counter) shuffles")
+        numberFound = true
         break
     }
 }
 
-if counter == maxIterations {
+if !numberFound {
     print("Max iteration amount was reached and 5 was not generated as the random number")
 }
 
