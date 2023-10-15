@@ -95,6 +95,8 @@ print(array)
  It should be 1/2 of createArray and started from [1,3,5.....
  */
 
+print(array.count)
+
 for number in array {
     if isEvenNumber(number) {
         if let index = array.firstIndex(of: number) {
@@ -104,3 +106,4 @@ for number in array {
 }
 
 print(array)
+print(array.count)
