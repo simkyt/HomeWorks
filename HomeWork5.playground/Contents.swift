@@ -49,31 +49,51 @@ Exercise 2
 */
 
 class Figure {
-    var height: Float
-    var width: Float
-    var radius: Float
-    var square: Float = 0.0
-    var perimeter: Float = 0.0
+//    var height: Float
+//    var width: Float
+//    var radius: Float
+    var square: Float?
+    var perimeter: Float?
     
-    init(height: Float = 0.0, width: Float = 0.0, radius: Float = 0.0) {
-        self.height = height
-        self.width = width
-        self.radius = radius
+//    init(height: Float = 0.0, width: Float = 0.0, radius: Float = 0.0) {
+//        self.height = height
+//        self.width = width
+//        self.radius = radius
+//        self.square = 0.0
+//        self.perimeter = 0.0
+//    }
+    
+    func squareOfFigure() -> Float { 
+        if let square = square {
+            return square
+        } else {
+            return 0.0
+        }
     }
-    
-    func squareOfFigure() -> Float { return square }
-    func perimeterOfFigure() -> Float { return perimeter }
+    func perimeterOfFigure() -> Float {
+        if let perimeter = perimeter {
+            return perimeter
+        } else {
+            return 0.0
+        }
+    }
 }
 
 class Rectangle: Figure {
+    var height: Float
+    var width: Float
+    
+    init(height: Float, width: Float) {
+        self.height = height
+        self.width = width
+    }
+    
     override func squareOfFigure() -> Float {
-        square = width * height
-        return square
+        return width * height
     }
     
     override func perimeterOfFigure() -> Float {
-        perimeter = 2 * (width + height)
-        return perimeter
+        return 2 * (width + height)
     }
     
     func description() {
@@ -87,14 +107,18 @@ let myRectangle = Rectangle(height: 5.2, width: 3.5)
 myRectangle.description()
 
 class Circle: Figure {
+    var radius: Float
+    
+    init(radius: Float) {
+        self.radius = radius
+    }
+    
     override func squareOfFigure() -> Float {
-        square = 3.14 * pow(radius, 2)
-        return square
+        return 3.14 * pow(radius, 2)
     }
     
     override func perimeterOfFigure() -> Float {
-        perimeter = 2 * 3.14 * radius
-        return perimeter
+        return 2 * 3.14 * radius
     }
     
     func description() {
