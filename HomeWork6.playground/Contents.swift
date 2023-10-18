@@ -60,7 +60,7 @@ Call func 4 times for all calculateResult
 */
 
 let numOne = 10
-let numTwo = 2
+let numTwo = 0
 
 do {
     let resultOne = try calculateResult(firstNumber: numOne, secondNumber: numTwo, withCalculationType: .addition)
@@ -74,7 +74,10 @@ do {
     
 } catch Errors.divisionByZero {
     print("division by zero is not allowed")
+} catch {
+    print("some other error occurred")
 }
+
 
 /*
 Exercise 2
