@@ -27,18 +27,12 @@ class ThemeViewController: UIViewController {
         print("darkButtonTapped")
         
         UIView.transition(with: view, duration: 0.3, options: .transitionCrossDissolve, animations: {
-            let backgroundColor: UIColor = self.isDarkTheme ? .white : .black
-            let navBarTextColor: UIColor = self.isDarkTheme ? .black : .white
-            let buttonTitle: String = self.isDarkTheme ? "Dark Theme on" : "Dark Theme off"
-            let buttonTitleColor: UIColor = self.isDarkTheme ? .white : .black
-            let buttonTintColor: UIColor = self.isDarkTheme ? .black : .white
+            self.view.backgroundColor = self.isDarkTheme ? .white : .black
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: self.isDarkTheme ? UIColor.black : UIColor.white]
             
-            self.view.backgroundColor = backgroundColor
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navBarTextColor]
-            
-            self.darkButton.setTitle(buttonTitle, for: .normal)
-            self.darkButton.setTitleColor(buttonTitleColor, for: .normal)
-            self.darkButton.tintColor = buttonTintColor
+            self.darkButton.setTitle(self.isDarkTheme ? "Dark Theme on" : "Dark Theme off", for: .normal)
+            self.darkButton.setTitleColor(self.isDarkTheme ? .white : .black, for: .normal)
+            self.darkButton.tintColor = self.isDarkTheme ? .black : .white
         }, completion: nil)
         
         isDarkTheme.toggle()
