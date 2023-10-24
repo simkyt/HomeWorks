@@ -48,7 +48,7 @@ class ViewController: UIViewController {
         applyStyle(
             color1: UIColor(red: 0.4322142885, green: 0.9718759656, blue: 0.7847494466, alpha: 1.0),
             color2: UIColor(red: 1.0, green: 0.1083200715, blue: 0.2086823998, alpha: 1.0),
-            imageSystemName: "rectangle.and.pencil.and.ellipsis.rtl",
+            imageSystemName: "",
             imageTintColor: UIColor.systemBlue,
             backgroundColor: UIColor.white
         )
@@ -66,8 +66,8 @@ class ViewController: UIViewController {
     
     @IBAction func viewStyleThree_tapped(_ sender: Any) {
         applyStyle(
-            color1: UIColor.magenta,
-            color2: UIColor.cyan,
+            color1: UIColor.black,
+            color2: UIColor.systemTeal,
             imageSystemName: "heart.fill",
             imageTintColor: UIColor.red,
             backgroundColor: UIColor.yellow
