@@ -35,7 +35,7 @@ class ViewController: UIViewController {
         resultField.text = weekdayName
         isWeekdayFound = true
     
-        setTexts()
+        setFieldsFound()
         //Calendar
         //DateCompontes
         //DateFormatter -> dateFormat
@@ -61,7 +61,7 @@ class ViewController: UIViewController {
             }
         } else {
             isWeekdayFound = false
-            setTexts()
+            resetFields()
         }
     }
     
@@ -79,22 +79,22 @@ class ViewController: UIViewController {
         }
     }
     
-    func setTexts() {
-        if isWeekdayFound {
-            resultButton.setTitle("Clear", for:. normal)
-            dayTexfiled.isUserInteractionEnabled = false
-            monthTextField.isUserInteractionEnabled = false
-            yearTextField.isUserInteractionEnabled = false
-        } else {
-            resultButton.setTitle("Find", for: .normal)
-            resultField.text = "Result"
-            dayTexfiled.text = ""
-            monthTextField.text = ""
-            yearTextField.text = ""
-            dayTexfiled.isUserInteractionEnabled = true
-            monthTextField.isUserInteractionEnabled = true
-            yearTextField.isUserInteractionEnabled = true
-        }
+    func setFieldsFound() {
+        resultButton.setTitle("Clear", for:. normal)
+        dayTexfiled.isUserInteractionEnabled = false
+        monthTextField.isUserInteractionEnabled = false
+        yearTextField.isUserInteractionEnabled = false
+    }
+    
+    func resetFields() {
+        resultButton.setTitle("Find", for: .normal)
+        resultField.text = "Result"
+        dayTexfiled.text = ""
+        monthTextField.text = ""
+        yearTextField.text = ""
+        dayTexfiled.isUserInteractionEnabled = true
+        monthTextField.isUserInteractionEnabled = true
+        yearTextField.isUserInteractionEnabled = true
     }
     
     
