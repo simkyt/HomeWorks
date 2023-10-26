@@ -81,9 +81,9 @@ class ViewController: UIViewController {
     
     func setFieldsFound() {
         resultButton.setTitle("Clear", for:. normal)
-        dayTexfiled.isUserInteractionEnabled = false
-        monthTextField.isUserInteractionEnabled = false
-        yearTextField.isUserInteractionEnabled = false
+        dayTexfiled.isUserInteractionEnabled.toggle()
+        monthTextField.isUserInteractionEnabled.toggle()
+        yearTextField.isUserInteractionEnabled.toggle()
     }
     
     func resetFields() {
@@ -92,9 +92,9 @@ class ViewController: UIViewController {
         dayTexfiled.text = ""
         monthTextField.text = ""
         yearTextField.text = ""
-        dayTexfiled.isUserInteractionEnabled = true
-        monthTextField.isUserInteractionEnabled = true
-        yearTextField.isUserInteractionEnabled = true
+        dayTexfiled.isUserInteractionEnabled.toggle()
+        monthTextField.isUserInteractionEnabled.toggle()
+        yearTextField.isUserInteractionEnabled.toggle()
     }
     
     
