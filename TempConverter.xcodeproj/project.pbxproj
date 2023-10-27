@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1E84775B2AEAE9C700AEAB9D /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E84775A2AEAE9C700AEAB9D /* InfoViewController.swift */; };
+		1E84775E2AEBA82A00AEAB9D /* TemperatureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E84775D2AEBA82A00AEAB9D /* TemperatureModel.swift */; };
+		1E8477602AEBB30600AEAB9D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E84775F2AEBB30600AEAB9D /* Extensions.swift */; };
 		68F84FED2AEA86F7001711FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F84FEC2AEA86F7001711FB /* AppDelegate.swift */; };
 		68F84FEF2AEA86F7001711FB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F84FEE2AEA86F7001711FB /* SceneDelegate.swift */; };
 		68F84FF12AEA86F7001711FB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F84FF02AEA86F7001711FB /* ViewController.swift */; };
@@ -18,6 +20,8 @@
 
 /* Begin PBXFileReference section */
 		1E84775A2AEAE9C700AEAB9D /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		1E84775D2AEBA82A00AEAB9D /* TemperatureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureModel.swift; sourceTree = "<group>"; };
+		1E84775F2AEBB30600AEAB9D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		68F84FE92AEA86F7001711FB /* TempConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TempConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68F84FEC2AEA86F7001711FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		68F84FEE2AEA86F7001711FB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +43,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E84775C2AEBA78C00AEAB9D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1E84775D2AEBA82A00AEAB9D /* TemperatureModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		68F84FE02AEA86F7001711FB = {
 			isa = PBXGroup;
 			children = (
@@ -58,9 +70,11 @@
 		68F84FEB2AEA86F7001711FB /* TempConverter */ = {
 			isa = PBXGroup;
 			children = (
+				1E84775F2AEBB30600AEAB9D /* Extensions.swift */,
 				68F850002AEA8707001711FB /* AppDelegate */,
-				68F850012AEA871D001711FB /* Controller */,
+				1E84775C2AEBA78C00AEAB9D /* Models */,
 				68F850022AEA8726001711FB /* Views */,
+				68F850012AEA871D001711FB /* Controller */,
 				68F84FF52AEA86F8001711FB /* Assets.xcassets */,
 				68F84FFA2AEA86F8001711FB /* Info.plist */,
 			);
@@ -166,6 +180,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				68F84FF12AEA86F7001711FB /* ViewController.swift in Sources */,
+				1E8477602AEBB30600AEAB9D /* Extensions.swift in Sources */,
+				1E84775E2AEBA82A00AEAB9D /* TemperatureModel.swift in Sources */,
 				68F84FED2AEA86F7001711FB /* AppDelegate.swift in Sources */,
 				1E84775B2AEAE9C700AEAB9D /* InfoViewController.swift in Sources */,
 				68F84FEF2AEA86F7001711FB /* SceneDelegate.swift in Sources */,

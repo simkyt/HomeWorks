@@ -7,14 +7,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, TemperatureDataDelegate {
 
     @IBOutlet weak var initialTempLabel: UILabel!
     @IBOutlet weak var convertedTempLabel: UILabel!
     @IBOutlet weak var tempConvFromControl: UISegmentedControl!
     @IBOutlet weak var tempConvToControl: UISegmentedControl!
-    var initialTemp: String = "0 ºC"
-    var convertedTemp: String = "32 ºF"
+    var temperatureModel = TemperatureModel()
     
     @IBOutlet weak var tempSlider: UISlider!{
         didSet {
@@ -30,10 +29,15 @@ class ViewController: UIViewController {
         tempConvToControl.setEnabled(false, forSegmentAt: 0)
     }
     
+    func getTemperatureModel() -> TemperatureModel {
+        return temperatureModel
+    }
+    
     @IBAction func navBarButtonPressed(_ sender: Any) {
         let infoViewController = InfoViewController()
-        infoViewController.initialTemp = initialTemp
-        infoViewController.convertedTemp = convertedTemp
+//        infoViewController.temperatureModel = self.temperatureModel //// simply via injecting the property instead of delegate protocol
+        infoViewController.delegate = self
+    //    present(infoViewController, animated: true)
         navigationController?.pushViewController(infoViewController, animated: true)
     }
     
@@ -57,23 +61,16 @@ class ViewController: UIViewController {
         
         if let fromTitle = tempConvFromControl.titleForSegment(at: fromIndex),
            let toTitle = tempConvToControl.titleForSegment(at: toIndex),
-           let fromScale = Temperatures(rawValue: fromTitle),
-           let toScale = Temperatures(rawValue: toTitle) {
+           let fromScale = TemperatureModel.Temperatures(rawValue: fromTitle),
+           let toScale = TemperatureModel.Temperatures(rawValue: toTitle) {
             
-            initialTempLabel.text = "\(Int(value)) º\(fromTitle.prefix(1))"
-            let convertedValue = TemperatureConverter.convert(Int(value), from: fromScale, to: toScale)
+            temperatureModel.initialTemperature = Int(value)
+            temperatureModel.fromUnit = fromScale
+            temperatureModel.toUnit = toScale
+            temperatureModel.convertTemperature()
             
-            var formatString: String
-            if floor(convertedValue) == convertedValue {
-                formatString = "%.0f º\(toTitle.prefix(1))"
-            } else {
-                formatString = "%.2f º\(toTitle.prefix(1))"
-            }
-            
-            convertedTempLabel.text = String(format: formatString, convertedValue)
-            
-            initialTemp = initialTempLabel.text!
-            convertedTemp = convertedTempLabel.text!
+            initialTempLabel.text = "\(temperatureModel.initialTemperature) º\(fromTitle.prefix(1))"
+            convertedTempLabel.text = "\(temperatureModel.convertedTemperature.formattedTemp(unit: toTitle))"
         } else {
             fatalError("something went terribly wrong")
         }
@@ -95,36 +92,6 @@ class ViewController: UIViewController {
             let nextIndex = (fromIndex + 1) % tempConvToControl.numberOfSegments
             tempConvToControl.selectedSegmentIndex = nextIndex
         }
-    }
-    
-    enum Temperatures: String {
-        case celsius = "Celsius"
-        case fahrenheit = "Fahrenheit"
-        case kelvin = "Kelvin"
-    }
-
-    struct TemperatureConverter {
-        
-        static func convert(_ value: Int, from: Temperatures, to: Temperatures) -> Float {
-            var value = Float(value)
-            switch (from, to) {
-            case (.celsius, .fahrenheit):
-                return value * 9/5 + 32
-            case (.celsius, .kelvin):
-                return value + 273.15
-            case (.fahrenheit, .celsius):
-                return (value - 32) * 5/9
-            case (.fahrenheit, .kelvin):
-                return (value - 32) * 5/9 + 273.15
-            case (.kelvin, .celsius):
-                return value - 273.15
-            case (.kelvin, .fahrenheit):
-                return (value - 273.15) * 9/5 + 32
-            default:
-                return value
-            }
-        }
-        
     }
 }
 #warning("pass result to InfoVC without segue")

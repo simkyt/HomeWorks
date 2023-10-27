@@ -7,21 +7,31 @@
 
 import UIKit
 
+protocol TemperatureDataDelegate: AnyObject {
+    func getTemperatureModel() -> TemperatureModel
+}
+
 class InfoViewController: UIViewController {
 
     var initialTempLabel: UILabel!
     var additionalLabel: UILabel!
     var convertedTempLabel: UILabel!
-    var initialTemp: String?
-    var convertedTemp: String?
+    var temperatureModel: TemperatureModel!
+    weak var delegate: TemperatureDataDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        temperatureModel = delegate?.getTemperatureModel()
+        guard let temperatureModel = temperatureModel else {
+            fatalError("Temperature model is nil")
+        }
+        
         view.backgroundColor = .white
         
         initialTempLabel = UILabel()
         initialTempLabel.translatesAutoresizingMaskIntoConstraints = false
-        initialTempLabel.text = initialTemp ?? "something"
+        initialTempLabel.text = "\(temperatureModel.initialTemperature) º\(temperatureModel.fromUnit.rawValue.prefix(1))"
         initialTempLabel.textColor = .black
         view.addSubview(initialTempLabel)
         
@@ -33,7 +43,7 @@ class InfoViewController: UIViewController {
         
         convertedTempLabel = UILabel()
         convertedTempLabel.translatesAutoresizingMaskIntoConstraints = false
-        convertedTempLabel.text = convertedTemp ?? "wrong"
+        convertedTempLabel.text = "\(temperatureModel.convertedTemperature.formattedTemp(unit: temperatureModel.toUnit.rawValue))"
         convertedTempLabel.textColor = .black
         view.addSubview(convertedTempLabel)
         
